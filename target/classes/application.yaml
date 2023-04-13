@@ -1,0 +1,18 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 9999
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dousheng?serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.zzqedu.dousheng.entity
+
+
+
