@@ -1,28 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zzqedu.dousheng.mapper.UserMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzqedu.dousheng.dao.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zzqedu.dousheng.dao.entity.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="follow_count" jdbcType="BIGINT" property="followCount" />
+    <result column="follower_count" jdbcType="BIGINT" property="followerCount" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="background_image" jdbcType="VARCHAR" property="backgroundImage" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="total_favorited" jdbcType="BIGINT" property="totalFavorited" />
+    <result column="work_count" jdbcType="BIGINT" property="workCount" />
+    <result column="favorite_count" jdbcType="BIGINT" property="favoriteCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, follow_count, follower_count, avatar, background_image, signature, total_favorited, 
+    work_count, favorite_count, create_time, update_time
+  </sql>
 
-    <resultMap id="BaseResultMap" type="com.zzqedu.dousheng.entity.User">
-        <id property="id" column="id" jdbcType="VARCHAR"/>
-        <result property="name" column="name" jdbcType="INTEGER"/>
-        <result property="age" column="age" jdbcType="INTEGER"/>
-    </resultMap>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
 
-    <sql id="Base_Column_List">
-        id,name,age
-    </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
 
-    <insert id="add">
-        insert into user(name, age) values (#{name}, #{age})
-    </insert>
+  <insert id="insertSelective" parameterType="com.zzqedu.dousheng.dao.entity.User">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="followCount != null">
+        follow_count,
+      </if>
+      <if test="followerCount != null">
+        follower_count,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="backgroundImage != null">
+        background_image,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="totalFavorited != null">
+        total_favorited,
+      </if>
+      <if test="workCount != null">
+        work_count,
+      </if>
+      <if test="favoriteCount != null">
+        favorite_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="followCount != null">
+        #{followCount,jdbcType=BIGINT},
+      </if>
+      <if test="followerCount != null">
+        #{followerCount,jdbcType=BIGINT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundImage != null">
+        #{backgroundImage,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFavorited != null">
+        #{totalFavorited,jdbcType=BIGINT},
+      </if>
+      <if test="workCount != null">
+        #{workCount,jdbcType=BIGINT},
+      </if>
+      <if test="favoriteCount != null">
+        #{favoriteCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
 
-    <select id="getOne" resultType="com.zzqedu.dousheng.entity.User">
-        select <include refid="Base_Column_List"/>
-        from user
-        limit 1
-    </select>
-
-
+  <update id="updateByPrimaryKeySelective" parameterType="com.zzqedu.dousheng.dao.entity.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="followCount != null">
+        follow_count = #{followCount,jdbcType=BIGINT},
+      </if>
+      <if test="followerCount != null">
+        follower_count = #{followerCount,jdbcType=BIGINT},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundImage != null">
+        background_image = #{backgroundImage,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFavorited != null">
+        total_favorited = #{totalFavorited,jdbcType=BIGINT},
+      </if>
+      <if test="workCount != null">
+        work_count = #{workCount,jdbcType=BIGINT},
+      </if>
+      <if test="favoriteCount != null">
+        favorite_count = #{favoriteCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>
