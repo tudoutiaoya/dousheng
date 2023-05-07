@@ -1,32 +1,41 @@
-name: Deploy Spring Boot App
+name: Deploy to Server
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Java
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
 
-    - name: Build and package with Maven
-      run: mvn package -DskipTests=true
+      - name: Build with Maven
+        run: mvn clean package
 
-    - name: Deploy with SCP
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_PASSWORD }}
-        source: "target/my-app.jar"
-        target: "/home/my-app/my-app.jar"
+      - name: Copy Jar to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          source: target/*.jar
+          target: /path/to/jar
+
+      - name: SSH into Server and start the application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          script: |
+            cd /path/to/jar
+            java -jar your-app.jar
