@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
           source: target/*.jar
-          target: /home/springboot/dousheng/test
+          target: /home/springboot/dousheng/test/app.jar
 
       - name: SSH into Server and start the application
         uses: appleboy/ssh-action@master
@@ -38,4 +38,4 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           script: |
             cd /home/springboot/dousheng/test/
-            java -jar your-app.jar
+            java -jar app.jar
