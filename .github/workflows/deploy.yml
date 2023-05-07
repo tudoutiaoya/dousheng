@@ -28,7 +28,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
-          source: target/dousheng-0.0.1-SNAPSHOT.jar #默认为artifactId-version
+          source: dousheng-0.0.1-SNAPSHOT.jar #默认为artifactId-version
           target: /home/springboot/dousheng/test/
 
       - name: SSH into Server and start the application
@@ -38,5 +38,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
           script: |
-            cd /home/springboot/dousheng/test/target/
+            cd /home/springboot/dousheng/test/
             nohup java -jar dousheng-0.0.1-SNAPSHOT.jar &
