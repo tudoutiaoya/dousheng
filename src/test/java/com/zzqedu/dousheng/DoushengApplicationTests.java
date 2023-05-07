@@ -1,6 +1,7 @@
 package com.zzqedu.dousheng;
 
 import org.junit.jupiter.api.Test;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
@@ -20,6 +21,32 @@ class DoushengApplicationTests {
         LocalDate parse = LocalDate.parse("2019-09-10", DateTimeFormatter.ISO_LOCAL_DATE);
 
         System.out.println(parse);
+    }
+
+
+    @Test
+    void testBcrypt() {
+        String password = "123456";
+
+        // 加密
+        String encodedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        System.out.println(encodedPassword);
+
+        // 使用正确密码验证密码是否正确
+        boolean flag = BCrypt.checkpw(password, encodedPassword);
+        System.out.println(flag);
+
+        // 使用错误密码验证密码是否正确
+        flag = BCrypt.checkpw("111222", encodedPassword);
+        System.out.println(flag);
+
+        System.out.println("-------------------------------------------");
+
+    }
+
+    @Test
+    void test1() {
+        System.out.println("Hello World");
     }
 
 }

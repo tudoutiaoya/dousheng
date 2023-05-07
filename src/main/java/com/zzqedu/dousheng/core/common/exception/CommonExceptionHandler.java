@@ -60,6 +60,7 @@ public class CommonExceptionHandler {
     /**
      * 处理业务异常
      */
+    @ExceptionHandler(BusinessException.class)
     public RestResp handlerBusinessException(BusinessException e) {
         log.error(e.getMessage(), e);
         return RestResp.fail(e.getErrorCodeEnum());

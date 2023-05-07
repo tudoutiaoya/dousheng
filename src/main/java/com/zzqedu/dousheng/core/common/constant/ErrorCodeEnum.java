@@ -12,7 +12,12 @@ public enum ErrorCodeEnum {
     /**
      * 系统错误
      */
-    SYSTEM_ERROR(-999999, "系统执行出错");
+    SYSTEM_ERROR(-99999, "系统执行出错"),
+
+    /**
+     * 用户名已经存在
+     */
+    USER_NAME_EXIST(10000, "用户已经存在");
 
     // 自定义状态码
     private final int code;
