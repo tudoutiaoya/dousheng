@@ -1,0 +1,32 @@
+name: Deploy Spring Boot App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+
+    - name: Build and package with Maven
+      run: mvn package -DskipTests=true
+
+    - name: Deploy with SCP
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ 39.105.113.51 }}
+        username: ${{ root }}
+        password: ${{ ZZQ0902zzq }}
+        source: "target/my-app.jar"
+        target: "/home/my-app/my-app.jar"
