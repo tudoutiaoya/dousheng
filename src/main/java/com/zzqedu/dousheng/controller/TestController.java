@@ -25,4 +25,9 @@ public class TestController {
     }
 
 
+    @GetMapping("/hello")
+    public RestResp hello() {
+        return RestResp.builder().withToken("hello").build();
+    }
+
 }
