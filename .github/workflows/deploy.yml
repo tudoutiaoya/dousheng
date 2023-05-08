@@ -20,7 +20,7 @@ jobs:
           java-version: '8'
 
       - name: Build with Maven
-        run: mvn clean package -DfinalName=app
+        run: mvn clean package
 
       - name: Copy Jar to Server
         uses: appleboy/scp-action@master
