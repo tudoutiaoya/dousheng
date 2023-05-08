@@ -34,4 +34,10 @@ public class TestController {
         return RestResp.builder().withToken("hello").build();
     }
 
+    @GetMapping("/hello2")
+    public RestResp hello2() {
+        log.info("测试hello2");
+        return RestResp.builder().withToken("hello2").build();
+    }
+
 }
