@@ -39,5 +39,5 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           script: |
             cd /home/springboot/dousheng/test/target/
-            pkill -f dousheng-0.0.1-SNAPSHOT.jar
+            pgrep dousheng-0.0.1-SNAPSHOT.jar | xargs -r kill -9
             nohup java -jar dousheng-0.0.1-SNAPSHOT.jar &
