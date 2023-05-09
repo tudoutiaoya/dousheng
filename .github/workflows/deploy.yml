@@ -40,4 +40,4 @@ jobs:
           script: |
             cd /home/springboot/dousheng/test/target/
             pgrep -f dousheng-0.0.1-SNAPSHOT.jar | xargs -r kill -9 | exit 0 
-            nohup java -jar dousheng-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &
+            nohup java -Xmx1g -Xms512m -jar dousheng-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &
