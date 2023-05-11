@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
-          source: "target/lane-formal.jar"
+          source: "target/dousheng.jar"
           rm: true
           target: "/www/test"
       - name: Deploy
