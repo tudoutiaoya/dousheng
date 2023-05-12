@@ -26,7 +26,7 @@ jobs:
           key: ${{ secrets.KEY }}
           source: "target/dousheng.jar"
           rm: true
-          target: "/www/test"
+          target: "/home/springboot/dousheng/"
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -36,7 +36,7 @@ jobs:
           port: ${{ secrets.PORT }}
           command_timeout: 20s
           script: |
-            cd /www/test/target
+            cd /home/springboot/dousheng/target/
             ps -ef | grep dousheng.jar | grep -v grep | awk '{print $2}' | xargs kill -9 
             nohup java -jar dousheng.jar --spring.profiles.active=pro > nohup.out &
             exit
