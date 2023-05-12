@@ -76,4 +76,10 @@ public class TestController {
         return RestResp.builder().withToken("hello8").build();
     }
 
+    @GetMapping("/hello")
+    public RestResp hello9() {
+        log.info("测试hello9");
+        return RestResp.builder().withToken("hello9").build();
+    }
+
 }
