@@ -38,5 +38,5 @@ jobs:
           script: |
             cd /home/springboot/dousheng/target/
             ps -ef | grep dousheng.jar | grep -v grep | awk '{print $2}' | xargs kill -9 
-            nohup java -jar dousheng.jar --spring.profiles.active=pro > nohup.out &
+            nohup java -jar dousheng.jar --spring.profiles.active=prod > nohup.out &
             exit

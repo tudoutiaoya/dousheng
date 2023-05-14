@@ -22,69 +22,58 @@ public class RestResp {
      * 响应码
      */
     @Schema(description = "响应状态码")
-    @JsonProperty("status_code")
     private int statusCode;
 
     /**
      * 响应消息
      */
-    @JsonProperty("status_msg")
     private String statusMsg;
 
 
     /**
      * 下次请求的时间
      */
-    @JsonProperty("next_time")
     private Long nextTime;
 
     /**
      * 视频列表
      */
-    @JsonProperty("video_list")
     private List<?> videoList;
 
 
     /**
      * 用户id
      */
-    @JsonProperty("user_id")
     private Long userId;
 
     /**
      * 用户鉴权token
      */
-    @JsonProperty("token")
     private String token;
 
     /**
      * 用户信息
      */
-    @JsonProperty("user")
     private Object user;
 
     /**
      * 评论
      */
-    @JsonProperty("comment")
     private Object comment;
 
     /**
      * 评论列表
      */
-    @JsonProperty("comment_list")
     private List<?> commentList;
 
     /**
      * 消息列表
      */
-    @JsonProperty("message_list")
     private List<?> messageList;
 
     /**
      * 用户列表
      */
-    @JsonProperty("user_list")
     private List<?> userList;
 
 
@@ -138,6 +127,10 @@ public class RestResp {
         }
         public Builder withUserId(Long userId) {
             this.userId = userId;
+            return this;
+        }
+        public Builder withUser(Object user) {
+            this.user = user;
             return this;
         }
         public Builder withToken(String token) {

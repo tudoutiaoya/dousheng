@@ -1,5 +1,9 @@
 package com.zzqedu.dousheng;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.zzqedu.dousheng.core.util.JWTUtil;
+import com.zzqedu.dousheng.dao.entity.User;
+import com.zzqedu.dousheng.dto.resp.UserRespDto;
 import org.junit.jupiter.api.Test;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.Random;
 
 
 class DoushengApplicationTests {
@@ -45,8 +51,19 @@ class DoushengApplicationTests {
     }
 
     @Test
-    void test1() {
-        System.out.println("Hello World");
+    void testRandom() {
+        UserRespDto userRespDto = new UserRespDto();
+        User user = new User();
+        BeanUtil.copyProperties(user, userRespDto);
+        System.out.println(userRespDto);
+    }
+
+    @Test
+    void testJWT() {
+        String token = JWTUtil.createToken(1000L);
+        System.out.println(token);
+        Long aLong = JWTUtil.checkToken("eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODkxNTA4MTksInVzZXJJZCI6MTAwMCwiaWIjoxNjgzOTY2ODE5fQ.wPA0vEyvnBp85axl9xRKisE1M5pRgL4Xvi8R8kC_0qY");
+        System.out.println(aLong);
     }
 
 }

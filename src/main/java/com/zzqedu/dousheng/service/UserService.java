@@ -1,6 +1,7 @@
 package com.zzqedu.dousheng.service;
 
 import com.zzqedu.dousheng.core.common.resp.RestResp;
+import com.zzqedu.dousheng.dto.req.LoginReqDto;
 import org.springframework.stereotype.Service;
 
 
@@ -8,10 +9,8 @@ public interface UserService {
 
     /**
      * 用户注册
-     * @param username 用户名
-     * @param password 密码
      */
-    RestResp register(String username, String password);
+    RestResp register(LoginReqDto loginReqDto);
 
     /**
      *  获取用户by id
@@ -19,5 +18,13 @@ public interface UserService {
      * @return
      */
     RestResp getUserById(Long id);
+
+    /**
+     * 用户登陆
+     * @return
+     */
+    RestResp login(LoginReqDto loginReqDto);
+
+    RestResp currentUser(String userId, String token);
 
 }
